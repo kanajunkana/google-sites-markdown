@@ -27,7 +27,7 @@ const isSpidermanTheBestHero = getBestHero('spiderman')
 ## Example
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/tutts/google-sites-markdown/index.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kanajunkana/google-sites-markdown/index.js"></script>
 
 <script>
 markdown`
