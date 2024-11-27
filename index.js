@@ -937,10 +937,22 @@ function onDependencyLoaded(markdown) {
   // manage md
   const element = document.createElement('div')
   element.setAttribute('class', ROOT_NODE)
-  element.innerHTML = marked.parse(markdown[0])
+  const { Marked } = marked
+  const { markedHighlight } = markedHighlight
+  const newMarked = new Marked(
+    markedHighlight({
+  	emptyLangClass: 'hljs',
+      langPrefix: 'hljs language-',
+      highlight(code, lang, info) {
+        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+        return hljs.highlight(code, { language }).value;
+      }
+    })
+  )
+  element.innerHTML = newMarked.parse(markdown[0])
   document.body.appendChild(element)
 }
 
 function markdown(markdown) {
-  loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js', onDependencyLoaded.bind(null, markdown))
+  loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js', loadScript('https://cdn.jsdelivr.net/npm/marked-highlight/lib/index.umd.js', onDependencyLoaded.bind(null, markdown))
 }
