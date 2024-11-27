@@ -955,5 +955,11 @@ function onDependencyLoaded(markdown) {
 }
 
 function markdown(markdown) {
-  loadScript('https://cdn.jsdelivr.net/npm/marked-highlight/lib/index.umd.js', loadScript('https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js', onDependencyLoaded.bind(null, markdown))
+  loadScript(
+    'https://cdn.jsdelivr.net/npm/marked-highlight/lib/index.umd.js',
+    loadScript(
+      'https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js',
+      onDependencyLoaded.bind(null, markdown)
+    )
+  )
 }
