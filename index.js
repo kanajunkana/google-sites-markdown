@@ -939,9 +939,10 @@ function onDependencyLoaded(markdown) {
   element.setAttribute('class', ROOT_NODE)
   const { Marked } = globalThis.marked
   const { markedHighlight } = globalThis.markedHighlight
+  console.log({Marked, markedHighlight})
   const marked = new Marked(
     markedHighlight({
-  	emptyLangClass: 'hljs',
+  	  emptyLangClass: 'hljs',
       langPrefix: 'hljs language-',
       highlight(code, lang, info) {
         const language = hljs.getLanguage(lang) ? lang : 'plaintext';
@@ -954,5 +955,5 @@ function onDependencyLoaded(markdown) {
 }
 
 function markdown(markdown) {
-  loadScript('https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js', loadScript('https://cdn.jsdelivr.net/npm/marked-highlight/lib/index.umd.js', onDependencyLoaded.bind(null, markdown))
+  loadScript('https://cdn.jsdelivr.net/npm/marked-highlight/lib/index.umd.js', loadScript('https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js', onDependencyLoaded.bind(null, markdown))
 }
